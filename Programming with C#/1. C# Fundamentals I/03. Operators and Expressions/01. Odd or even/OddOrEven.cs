@@ -12,5 +12,9 @@ class OddOrEven
         Console.Write("Enter a number: ");
         int number = int.Parse(Console.ReadLine());
         Console.WriteLine("Number {0} is {1}", number, number % 2 == 0 ? "Even" : "Odd");
+        //Console.WriteLine($"Number {number} is {(number % 2 == 0 ? "Even" : "Odd")}");
+
+        Console.Write("Press any key to continue . . . ");
+        Console.ReadKey();
     }
 }

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DatabaseConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=.\sqlexpress;Initial Catalog=StudentSystem;Integrated Security=True</Value>
+      <Value Profile="(Default)">Data Source=.\sqlexpress;Initial Catalog=StudentSystemFake;Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

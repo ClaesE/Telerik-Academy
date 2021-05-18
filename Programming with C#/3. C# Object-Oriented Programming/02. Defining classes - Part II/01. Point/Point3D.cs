@@ -9,11 +9,11 @@ namespace CoordinateSystem
         private static readonly Point3D center = new Point3D(0, 0, 0);
 
         // Constructor
-        public Point3D(double x, double y, double z) : this()
+        public Point3D(double x, double y, double z)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         // Property for point.O

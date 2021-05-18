@@ -12,5 +12,7 @@
         IDbSet<User> Users { get; set; }
 
         IDbSet<Score> Scores { get; set; }
+
+        IDbSet<T> Set<T>() where T : class;
     }
 }

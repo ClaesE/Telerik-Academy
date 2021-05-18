@@ -27,7 +27,7 @@ class Program
 
         Point3D b = Point3D.Center;
         Console.WriteLine("Point({0}, {1}, {2})", b.X, b.Y, b.Z); // point O
-        
+
         Console.WriteLine("Distance: {0}", Distance.Calculate(a, b)); // Calculate distance
 
         // Path of points
@@ -44,5 +44,8 @@ class Program
 
         // Saves the points in output file
         PathStorage.Save(path, "../../output.txt");
+
+        Console.Write("Press any key to continue . . . ");
+        Console.ReadKey();
     }
 }

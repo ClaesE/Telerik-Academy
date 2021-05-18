@@ -1,0 +1,63 @@
+The complexity of the algorithm:
+    - approximately O (N * (N - 1))
+
+-- Explanation: --
+
+For each iteration of the for-cycle (0 -> N - 1), the while-cycle will be executed exactly N - 1 times.
+
+- Performances of if-construction: -
+
+For an ascending array, the number of entries in if (arr [start] <arr [end]) will be exactly N * (N - 1) times, and in else the construction 0 times.
+
+Example of N = 100
+    - total number of runs (2nd cycle iterations) -> 90 times
+    - entries in if -> 90 times
+    - entries in else -> 0 times
+
+In descending array, the number of entries in if (arr [start] <arr [end]) will be 0 times, and in else -> N * (N - 1) times.
+
+Example of N = 100
+    - total number of runs (2nd cycle iterations) -> 90 times
+    - entries in if -> 0 times
+    - entries in else -> 90 times
+
+For an array of randomly ordered elements, the entry into any conditional structure will average [N * (N - 1)] / 2 times.
+
+Example of N = 100
+    - total number of runs (2nd cycle iterations) -> 90 times
+    - entries in if -> ~ 50% of N
+    - entries in else -> ~ 50% of N
+
+-------------------------------------------------- -------------------------
+
+The complexity of the algorithm:
+    - middle case (random numbers in 1st column): approximately O ((N / 2) * M)
+    - the fastest (odd numbers in the 1st column): N execs on the outer loop, the internal ones don't execute even 1 time => complexity is O (N)
+    - slower (even numbers in the 1st column): N exterior cycles and M inner cycles => complexity is O (N * M)
+
+-- Explanation: --
+
+For a matrix of dimensions N x M, the outer loop (iterating in rows) will be executed exactly N times.
+
+The inner loop (iterating over columns) is executed N x M times only if (matrix [row, 0]% 2 == 0) -> true.
+
+The expression if (matrix [row, 0]% 2 == 0) is true on average in 50% of the cases, since the numbers are even / odd, and the chance of odd / even random selection is exactly 50%.
+
+Ie in the middle case, the internal cycle will be reached (N / 2) times, or it will be completed (N / 2) * M times.
+If the numbers in all rows of the 1st column are even, then the inner cycle will be reached N times, or N * M times will be executed.
+If the numbers in all rows of the 1st column are odd, then the inner cycle will be reached exactly 0 times and the complexity will be N.
+
+-------------------------------------------------- -------------------------
+
+The complexity of the algorithm:
+    - approximately O (N * M) => with the remark -> O (N ^ 2) since N = M
+
+-- Explanation: --
+
+A matrix of dimensions N * M is considered.
+
+For each recursive call, the for-loop is executed exactly N times. The number of recursive calls is M times.
+
+- Notes: -
+
+The function works only at N = M, for a rectangular matrix the behavior of the method is not correct.

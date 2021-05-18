@@ -11,9 +11,11 @@ class SumOfFractions
     static void Main()
     {
         decimal expression = 1;
+        int maxDenominator = 10;
+        
 
         Console.Write("1 ");
-        for (int denominator = 2; denominator <= 10; denominator++)
+        for (int denominator = 2; denominator <= maxDenominator; denominator++)
         {
             if (denominator % 2 == 0)
             {

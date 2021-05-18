@@ -24,12 +24,12 @@
             return new TicTacToeDbContext();
         }
 
-        public IDbSet<T> Set<T>() where T : class
+        public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();
         }
 
-        public void SaveChanges()
+        public new void SaveChanges()
         {
             base.SaveChanges();
         }

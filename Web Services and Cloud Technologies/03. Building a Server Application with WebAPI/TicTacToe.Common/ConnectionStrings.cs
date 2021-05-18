@@ -5,6 +5,6 @@
     
     public class ConnectionStrings
     {
-        public const string DefaultConnection = @"Data Source=.\sqlexpress;Initial Catalog=TicTacToe;Integrated Security=True";
+        public const string DefaultConnection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=TicTacToe;Integrated Security=True";
     }
 }

@@ -1,130 +1,130 @@
 ﻿namespace Events
 {
-    using System;
-    using System.Linq;
-    using System.Text;
+using System;
+using System.Linq;
+using System.Text;
 
-    public class EventProcessingEngine
-    {
-        private const string AddEventsCommand = "AddEvent";
-        private const string DeleteEventsCommand = "DeleteEvents";
-        private const string ListEventsCommand = "ListEvents";
-        private const char CommandSeparator = '|';
-        
-        private static readonly StringBuilder output = new StringBuilder();
-        private static readonly EventHolder events = new EventHolder();
+public class EventProcessingEngine
+{
+private const string AddEventsCommand = "AddEvent";
+private const string DeleteEventsCommand = "DeleteEvents";
+private const string ListEventsCommand = "ListEvents";
+private const char CommandSeparator = '|';
 
-        public static void Main()
-        {
-            bool hasValidCommand;
+private static readonly StringBuilder output = new StringBuilder();
+private static readonly EventHolder events = new EventHolder();
 
-            do
-            {
-                hasValidCommand = ExecuteNextCommand();
-            }
-            while (hasValidCommand);
+public static void Main()
+{
+bool hasValidCommand;
 
-            Console.WriteLine(output);
-        }
+do
+{
+hasValidCommand = ExecuteNextCommand();
+}
+while (hasValidCommand);
 
-        private static bool ExecuteNextCommand()
-        {
-            string command = Console.ReadLine();
+Console.WriteLine(output);
+}
 
-            if (string.IsNullOrEmpty(command))
-            {
-                return false;
-            }
+private static bool ExecuteNextCommand()
+{
+string command = Console.ReadLine();
 
-            switch (command[0])
-            {
-                case 'A':
-                    {
-                        AddEvent(command);
-                        return true;
-                    }
+if (string.IsNullOrEmpty(command))
+{
+return false;
+}
 
-                case 'D':
-                    {
-                        DeleteEvents(command);
-                        return true;
-                    }
+switch (command[0])
+{
+case 'A':
+{
+AddEvent(command);
+return true;
+}
 
-                case 'L':
-                    {
-                        ListEvents(command);
-                        return true;
-                    }
+case 'D':
+{
+DeleteEvents(command);
+return true;
+}
 
-                default:
-                    {
-                        return false;
-                    }
-            }
-        }
+case 'L':
+{
+ListEvents(command);
+return true;
+}
 
-        private static void ListEvents(string command)
-        {
-            DateTime dateAndTime = GetDateAndTime(command, ListEventsCommand);
+default:
+{
+return false;
+}
+}
+}
 
-            int pipeIndex = command.IndexOf(CommandSeparator);
-            string countAsString = command.Substring(pipeIndex + 1);
-            int count = int.Parse(countAsString);
+private static void ListEvents(string command)
+{
+DateTime dateAndTime = GetDateAndTime(command, ListEventsCommand);
 
-            events.ListEvents(dateAndTime, count);
-        }
+int pipeIndex = command.IndexOf(CommandSeparator);
+string countAsString = command.Substring(pipeIndex + 1);
+int count = int.Parse(countAsString);
 
-        private static void DeleteEvents(string command)
-        {
-            string title = command.Substring(DeleteEventsCommand.Length + 1);
-            events.DeleteEvents(title);
-        }
+events.ListEvents(dateAndTime, count);
+}
 
-        private static void AddEvent(string command)
-        {
-            DateTime date;
-            string title;
-            string location;
+private static void DeleteEvents(string command)
+{
+string title = command.Substring(DeleteEventsCommand.Length + 1);
+events.DeleteEvents(title);
+}
 
-            GetParameters(command, AddEventsCommand, out date, out title, out location);
+private static void AddEvent(string command)
+{
+DateTime date;
+string title;
+string location;
 
-            events.AddEvent(date, title, location);
-        }
+GetParameters(command, AddEventsCommand, out date, out title, out location);
 
-        private static void GetParameters(
-            string commandForExecution,
-            string commandType,
-            out DateTime dateAndTime,
-            out string eventTitle,
-            out string eventLocation)
-        {
-            dateAndTime = GetDateAndTime(commandForExecution, commandType);
+events.AddEvent(date, title, location);
+}
 
-            int firstPipeIndex = commandForExecution.IndexOf(CommandSeparator);
-            int lastPipeIndex = commandForExecution.LastIndexOf(CommandSeparator);
-            int startIndex = firstPipeIndex + 1;
+private static void GetParameters(
+string commandForExecution,
+string commandType,
+out DateTime dateAndTime,
+out string eventTitle,
+out string eventLocation)
+{
+dateAndTime = GetDateAndTime(commandForExecution, commandType);
 
-            if (firstPipeIndex == lastPipeIndex)
-            {
-                eventTitle = commandForExecution.Substring(startIndex).Trim();
-                eventLocation = string.Empty;
-            }
-            else
-            {
-                int length = lastPipeIndex - firstPipeIndex - 1;
-                eventTitle = commandForExecution.Substring(startIndex, length).Trim();
+int firstPipeIndex = commandForExecution.IndexOf(CommandSeparator);
+int lastPipeIndex = commandForExecution.LastIndexOf(CommandSeparator);
+int startIndex = firstPipeIndex + 1;
 
-                eventLocation = commandForExecution.Substring(startIndex).Trim();
-            }
-        }
+if (firstPipeIndex == lastPipeIndex)
+{
+eventTitle = commandForExecution.Substring(startIndex).Trim();
+eventLocation = string.Empty;
+}
+else
+{
+int length = lastPipeIndex - firstPipeIndex - 1;
+eventTitle = commandForExecution.Substring(startIndex, length).Trim();
 
-        private static DateTime GetDateAndTime(string command, string commandType)
-        {
-            string dateTimeAsString = command.Substring(commandType.Length + 1, 20);
+eventLocation = commandForExecution.Substring(startIndex).Trim();
+}
+}
 
-            DateTime dateTime = DateTime.Parse(dateTimeAsString);
+private static DateTime GetDateAndTime(string command, string commandType)
+{
+string dateTimeAsString = command.Substring(commandType.Length + 1, 20);
 
-            return dateTime;
-        }
-    }
+DateTime dateTime = DateTime.Parse(dateTimeAsString);
+
+return dateTime;
+}
+}
 }

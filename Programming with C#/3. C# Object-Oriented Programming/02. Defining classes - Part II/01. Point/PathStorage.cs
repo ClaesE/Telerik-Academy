@@ -10,8 +10,9 @@ namespace CoordinateSystem
         {
             Path path = new Path();
 
-            string content = File.ReadAllText(filePath);
-            string[] points = content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            //string content = File.ReadAllText(filePath);
+            //string[] points = content.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] points = File.ReadAllLines(filePath);
 
             for (int i = 0; i < points.Length; i++)
             {
